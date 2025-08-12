@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "practice_rg" {
 
 resource "azurerm_virtual_network" "practice_vnet" {
   name = "practice-vnet"
-  address_space = "10.10.0.0/16"
+  address_space = ["10.0.0.0/16"]
   location = azurerm_resource_group.practice_rg.location
   resource_group_name = azurerm_resource_group.practice_rg.name
 }
@@ -15,7 +15,7 @@ resource "azurerm_subnet" "practice_subnet_pub" {
   name = "practice-sub-pub"
   resource_group_name = azurerm_resource_group.practice_rg.name
   virtual_network_name = azurerm_virtual_network.practice_vnet.name
-  address_prefixes = "10.10.1.0/24"
+  address_prefixes = ["10.10.2.0/24"]
 }
 
 resource "azurerm_network_interface" "practice_nic" {
@@ -36,7 +36,7 @@ resource "azurerm_linux_virtual_machine" "practice_vm" {
   size                = "Standard_B2s"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.practice_nic.id,
   ]
 
   admin_ssh_key {
