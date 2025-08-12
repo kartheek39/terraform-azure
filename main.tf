@@ -35,14 +35,15 @@ resource "azurerm_linux_virtual_machine" "practice_vm" {
   location            = azurerm_resource_group.practice_rg.location
   size                = "Standard_B2s"
   admin_username      = "adminuser"
+  admin_password = "KCyber@12345"
   network_interface_ids = [
     azurerm_network_interface.practice_nic.id,
   ]
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+  # admin_ssh_key {
+  #   username   = "adminuser"
+  #   public_key = file("~/.ssh/id_rsa.pub")
+  # }
 
   os_disk {
     caching              = "ReadWrite"
