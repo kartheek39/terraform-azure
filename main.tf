@@ -1,7 +1,7 @@
 
 resource "azurerm_resource_group" "practice_rg" {
     name = "practice-rg"
-    location = "east-us-01"
+    location = "eastus"
 }
 
 resource "azurerm_virtual_network" "practice_vnet" {
